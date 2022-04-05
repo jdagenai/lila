@@ -61,11 +61,13 @@ object topnav {
       st.section(
         linkTitle(routes.Tv.index.path, trans.watch()),
         div(role := "group")(
-          a(href := routes.Tv.index)("Lichess TV"),
+          // Removed By Jean-Simon Dagenais
+          //a(href := routes.Tv.index)("Lichess TV"),
           a(href := routes.Tv.games)(trans.currentGames()),
-          (ctx.noKid && ctx.noBot) option a(href := routes.Streamer.index())(trans.streamersMenu()),
-          a(href := routes.RelayTour.index())(trans.broadcast.broadcasts()),
-          ctx.noBot option a(href := routes.Video.index)(trans.videoLibrary())
+          // Removed By Jean-Simon Dagenais
+          //(ctx.noKid && ctx.noBot) option a(href := routes.Streamer.index())(trans.streamersMenu()),
+          //a(href := routes.RelayTour.index())(trans.broadcast.broadcasts()),
+          //ctx.noBot option a(href := routes.Video.index)(trans.videoLibrary())
         )
       ),
       st.section(
@@ -75,7 +77,8 @@ object topnav {
           a(href := routes.Team.home())(trans.team.teams()),
           ctx.noKid option a(href := routes.ForumCateg.index)(trans.forum()),
           ctx.noKid option a(href := routes.Ublog.community("all"))(trans.blog()),
-          ctx.me.exists(!_.kid) option a(href := routes.Plan.index)(trans.patron.donate())
+          // Removed By Jean-Simon Dagenais
+          //ctx.me.exists(!_.kid) option a(href := routes.Plan.index)(trans.patron.donate())
         )
       ),
       st.section(

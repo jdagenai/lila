@@ -209,9 +209,10 @@ object home {
           a(href := "/mobile")(trans.mobileApp()),
           a(href := routes.Page.tos)(trans.termsOfService()),
           a(href := "/privacy")(trans.privacy()),
-          a(href := "/source")(trans.sourceCode()),
-          a(href := "/ads")("Ads"),
-          views.html.base.bits.connectLinks
+          // Removed By Jean-Simon Dagenais
+          //a(href := "/source")(trans.sourceCode()),
+          //a(href := "/ads")("Ads"),
+          //views.html.base.bits.connectLinks
         )
         
       )
