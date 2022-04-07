@@ -415,9 +415,9 @@ object layout {
             )
           ),
           ctx.blind option h2("Navigation"),
-          if(ctx.isAuth){
+          //if(ctx.isAuth){
           !ctx.isAppealUser option topnav()
-          }
+          //}
         ),
         div(cls := "site-buttons")(
           !ctx.isAppealUser option clinput,
