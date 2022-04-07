@@ -19,7 +19,7 @@ object home {
     views.html.base.layout(
       title = "",
       fullTitle = Some {
-        s"ChessUqam • ${trans.freeOnlineChess.txt()}"
+        s"ChessUQAM • ${trans.freeOnlineChess.txt()}"
       },
       moreJs = frag(
         jsModule("lobby"),
@@ -150,11 +150,11 @@ object home {
             div(cls := "about-side")(
               ctx.blind option h2("About"),
               trans.xIsAFreeYLibreOpenSourceChessServer(
-                "ChessUqam",
+                "ChessUQAM",
                 a(cls := "blue", href := routes.Plan.features)(trans.really.txt())
               ),
               " ",
-              a(href := "/about")(trans.aboutX("ChessUqam"), "...")
+              a(href := "/about")(trans.aboutX("ChessUQAM"), "...")
             ))
             ,
         currentGame.map(bits.currentGameInfo) orElse
@@ -211,7 +211,7 @@ object home {
         ),*/
         div(cls := "lobby__about")(
           ctx.blind option h2("About"),
-          a(href := "/about")(trans.aboutX("ChessUqam")),
+          a(href := "/about")(trans.aboutX("ChessUQAM")),
           a(href := "/faq")(trans.faq.faqAbbreviation()),
           a(href := "/contact")(trans.contact.contact()),
           a(href := "/mobile")(trans.mobileApp()),

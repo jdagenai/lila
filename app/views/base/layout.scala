@@ -410,7 +410,7 @@ object layout {
             if (ctx.kid) span(title := trans.kidMode.txt(), cls := "kiddo")(":)")
             else ctx.isBot option botImage,
             a(href := "/")(
-              "ChessUqam",
+              "ChessUQAM",
               // span(if (netConfig.isProd) ".org" else ".dev")
             )
           ),
