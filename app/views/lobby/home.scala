@@ -52,7 +52,7 @@ object home {
         .some,
       withHrefLangs = "".some
     ){
-     if(ctx.isAuth){
+     //if(ctx.isAuth){
       main(
         cls := List(
           "lobby"            -> true,
@@ -69,7 +69,8 @@ object home {
             
             ctx.blind option h2("Play"),
             a(
-              href := routes.Setup.hookForm,
+              if(ctx.isAuth) href := routes.Setup.hookForm else href := "/login"
+              ,
               cls := List(
                 "button button-metal config_hook" -> true,
                 "disabled"                        -> (playban.isDefined || currentGame.isDefined || hasUnreadLichessMessage || ctx.isBot)
@@ -77,7 +78,8 @@ object home {
               trans.createAGame()
             ),
             a(
-              href := routes.Setup.friendForm(none),
+              if(ctx.isAuth) href := routes.Setup.friendForm(none) else href := "/login"
+              ,
               cls := List(
                 "button button-metal config_friend" -> true,
                 "disabled"                          -> currentGame.isDefined
@@ -85,7 +87,8 @@ object home {
               trans.playWithAFriend()
             ),
             a(
-              href := routes.Setup.aiForm,
+              if(ctx.isAuth) href := routes.Setup.aiForm else href := "/login"
+              , 
               cls := List(
                 "button button-metal config_ai" -> true,
                 "disabled"                      -> currentGame.isDefined
@@ -216,8 +219,8 @@ object home {
         )
         
       )
-     }
-     else{
+     //}
+     /*else{
        main(
         cls := List(
           "lobby"            -> true,
@@ -245,7 +248,7 @@ object home {
             ),
 
       )
-     }
+     }*/
     }
 
   
