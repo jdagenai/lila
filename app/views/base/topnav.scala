@@ -25,8 +25,11 @@ object topnav {
           )
         ),
         div(role := "group")(
+          if(ctx.isAuth)
+          {
           if (ctx.noBot) a(href := "/?any#hook")(trans.createAGame())
-          else a(href := "/?any#friend")(trans.playWithAFriend()),
+          else a(href := "/?any#friend")(trans.playWithAFriend())
+          },
           ctx.noBot option frag(
             if(ctx.isAuth) a(href := routes.Tournament.home)(trans.arena.arenaTournaments())
             else a(href := "/login")(trans.arena.arenaTournaments()),
