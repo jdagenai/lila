@@ -68,30 +68,31 @@ object home {
           div(cls := "lobby__start")(
             
             ctx.blind option h2("Play"),
+            ctx.isAnon option h2("Please sign in before playing"),
             a(
-              if(ctx.isAuth) href := routes.Setup.hookForm else href := "/login"
+              href := routes.Setup.hookForm
               ,
               cls := List(
                 "button button-metal config_hook" -> true,
-                "disabled"                        -> (playban.isDefined || currentGame.isDefined || hasUnreadLichessMessage || ctx.isBot)
+                "disabled"                        -> (playban.isDefined || currentGame.isDefined || hasUnreadLichessMessage || ctx.isBot || ctx.isAnon)
               ),
               trans.createAGame()
             ),
             a(
-              if(ctx.isAuth) href := routes.Setup.friendForm(none) else href := "/login"
+              href := routes.Setup.friendForm(none)
               ,
               cls := List(
                 "button button-metal config_friend" -> true,
-                "disabled"                          -> currentGame.isDefined
+                "disabled"                          -> (currentGame.isDefined || ctx.isAnon)
               ),
               trans.playWithAFriend()
             ),
             a(
-              if(ctx.isAuth) href := routes.Setup.aiForm else href := "/login"
+              href := routes.Setup.aiForm
               , 
               cls := List(
                 "button button-metal config_ai" -> true,
-                "disabled"                      -> currentGame.isDefined
+                "disabled"                      -> (currentGame.isDefined || ctx.isAnon)
               ),
               trans.playWithTheMachine()
             ),
