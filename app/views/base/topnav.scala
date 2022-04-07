@@ -59,8 +59,6 @@ object topnav {
           ctx.noBot option frag(
             if(ctx.isAuth) a(href := routes.Learn.index)(trans.chessBasics())
             else a(href := "/login")(trans.chessBasics()),
-            if(ctx.isAuth) a(href := routes.Practice.index)(trans.practice())
-            else a(href := "/login")(trans.practice()),
             if(ctx.isAuth) a(href := routes.Coordinate.home)(trans.coordinates.coordinates())
             else a(href := "/login")(trans.coordinates.coordinates())
           ),
