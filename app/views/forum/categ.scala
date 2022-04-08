@@ -24,7 +24,7 @@ object categ {
     ) {
       main(cls := "forum index box")(
         div(cls := "box__top")(
-          h1(dataIcon := "", cls := "text")("Lichess Forum"),
+          h1(dataIcon := "", cls := "text")("ChessUQAM Forum"),
           bits.searchForm()
         ),
         showCategs(categs.filterNot(_.categ.isTeam)),
