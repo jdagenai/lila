@@ -66,7 +66,7 @@ $regards
         implicit val lang = userLang(user)
         mailer send Mailer.Message(
           to = email,
-          subject = s"$title title confirmed on dunescan.info.uqam.ca",
+          subject = s"$title title confirmed on ChessUQAM",
           text = Mailer.txt.addServiceNote(body),
           htmlBody = standardEmail(body).some
         )
@@ -78,10 +78,10 @@ $regards
 
   def onBecomeCoach(user: User): Funit =
     sendAsPrivateMessageAndEmail(user)(
-      subject = _ => "Coach profile unlocked on dunescan.info.uqam.ca",
+      subject = _ => "Coach profile unlocked on ChessUQAM",
       body = _ => s"""Hello,
 
-It is our pleasure to welcome you as a dunescan.info.uqam.ca coach.
+It is our pleasure to welcome you as a ChessUQAM coach.
 Your coach profile awaits you on $baseUrl/coach/edit.
 
 $regards
@@ -107,7 +107,7 @@ $regards
 
   def onAppealReply(user: User): Funit =
     sendAsPrivateMessageAndEmail(user)(
-      subject = _ => "Appeal response on dunescan.info.uqam.ca",
+      subject = _ => "Appeal response on ChessUQAM",
       body = _ => s"""Hello,
 
 Your appeal has received a response from the moderation team, to see it click here: $baseUrl/appeal
@@ -129,7 +129,7 @@ $regards
         implicit val lang = userLang(user)
         mailer send Mailer.Message(
           to = email,
-          subject = "dunescan.info.uqam.ca account erasure",
+          subject = "ChessUQAM account erasure",
           text = Mailer.txt.addServiceNote(body),
           htmlBody = standardEmail(body).some
         )
