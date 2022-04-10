@@ -68,7 +68,8 @@ object home {
           div(cls := "lobby__start")(
             
             ctx.blind option h2("Play"),
-            ctx.isAnon option h2("Please sign in before playing"),
+            //ctx.isAnon option h2("Please sign in before playing"),
+            ctx.isAnon option h2(trans.pleaseSignIn()),
             a(
               href := routes.Setup.hookForm
               ,

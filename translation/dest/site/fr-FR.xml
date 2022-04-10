@@ -234,6 +234,7 @@
   <string name="finished">Terminé</string>
   <string name="finishesX">se termine dans %s</string>
   <string name="abortGame">Annuler la partie</string>
+  <string name="pleaseSignIn">Veuillez vous authentifier avant de jouer</string>
   <string name="gameAborted">Partie annulée</string>
   <string name="standard">Standard</string>
   <string name="unlimited">Illimité</string>
