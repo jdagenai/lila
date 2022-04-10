@@ -68,7 +68,8 @@ object home {
           div(cls := "lobby__start")(
             
             ctx.blind option h2("Play"),
-            ctx.isAnon option h2("Please sign in before playing"),
+            //ctx.isAnon option h2("Please sign in before playing"),
+            ctx.isAnon option h2(trans.pleaseSignIn()),
             a(
               href := routes.Setup.hookForm
               ,
@@ -154,7 +155,7 @@ object home {
                 a(cls := "blue", href := routes.Plan.features)(trans.really.txt())
               ),
               " ",
-              a(href := "/about")(trans.aboutX("ChessUQAM"), "...")
+              //a(href := "/about")(trans.aboutX("ChessUQAM"), "...")
             ))
             ,
         currentGame.map(bits.currentGameInfo) orElse
@@ -211,12 +212,12 @@ object home {
         ),*/
         div(cls := "lobby__about")(
           ctx.blind option h2("About"),
-          a(href := "/about")(trans.aboutX("ChessUQAM")),
-          a(href := "/faq")(trans.faq.faqAbbreviation()),
-          a(href := "/contact")(trans.contact.contact()),
-          a(href := "/mobile")(trans.mobileApp()),
-          a(href := routes.Page.tos)(trans.termsOfService()),
-          a(href := "/privacy")(trans.privacy()),
+          //a(href := "/about")(trans.aboutX("ChessUQAM")),
+          //a(href := "/faq")(trans.faq.faqAbbreviation()),
+          //a(href := "/contact")(trans.contact.contact()),
+          //a(href := "/mobile")(trans.mobileApp()),
+          //a(href := routes.Page.tos)(trans.termsOfService()),
+          //a(href := "/privacy")(trans.privacy()),
           // Removed By Jean-Simon Dagenais
           //a(href := "/source")(trans.sourceCode()),
           //a(href := "/ads")("Ads"),
