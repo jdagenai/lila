@@ -19,7 +19,7 @@ object home {
     views.html.base.layout(
       title = "",
       fullTitle = Some {
-        s"ChessUqam • ${trans.freeOnlineChess.txt()}"
+        s"ChessUQAM • ${trans.freeOnlineChess.txt()}"
       },
       moreJs = frag(
         jsModule("lobby"),
@@ -52,7 +52,7 @@ object home {
         .some,
       withHrefLangs = "".some
     ){
-     if(ctx.isAuth){
+     //if(ctx.isAuth){
       main(
         cls := List(
           "lobby"            -> true,
@@ -68,27 +68,31 @@ object home {
           div(cls := "lobby__start")(
             
             ctx.blind option h2("Play"),
+            ctx.isAnon option h2("Please sign in before playing"),
             a(
-              href := routes.Setup.hookForm,
+              href := routes.Setup.hookForm
+              ,
               cls := List(
                 "button button-metal config_hook" -> true,
-                "disabled"                        -> (playban.isDefined || currentGame.isDefined || hasUnreadLichessMessage || ctx.isBot)
+                "disabled"                        -> (playban.isDefined || currentGame.isDefined || hasUnreadLichessMessage || ctx.isBot || ctx.isAnon)
               ),
               trans.createAGame()
             ),
             a(
-              href := routes.Setup.friendForm(none),
+              href := routes.Setup.friendForm(none)
+              ,
               cls := List(
                 "button button-metal config_friend" -> true,
-                "disabled"                          -> currentGame.isDefined
+                "disabled"                          -> (currentGame.isDefined || ctx.isAnon)
               ),
               trans.playWithAFriend()
             ),
             a(
-              href := routes.Setup.aiForm,
+              href := routes.Setup.aiForm
+              , 
               cls := List(
                 "button button-metal config_ai" -> true,
-                "disabled"                      -> currentGame.isDefined
+                "disabled"                      -> (currentGame.isDefined || ctx.isAnon)
               ),
               trans.playWithTheMachine()
             ),
@@ -97,7 +101,23 @@ object home {
           
           ),
 
-          div(cls := "lobby__counters")(
+          
+
+          div(cls := "lobby__spotlights")(
+            events.map(bits.spotlight),
+            !ctx.isBot option frag(
+              lila.tournament.Spotlight.select(tours, ctx.me, 3 - events.size) map {
+                views.html.tournament.homepageSpotlight(_)
+              },
+              swiss map views.html.swiss.bits.homepageSpotlight,
+              simuls.filter(isFeaturable) map views.html.simul.bits.homepageSpotlight
+            )
+          ),
+          
+          
+          
+        ),
+        div(cls := "lobby__counters")(
             ctx.blind option h2("Counters"),
             a(
               id := "nb_connected_players",
@@ -116,18 +136,8 @@ object home {
               )
             )
           ),
-
-          div(cls := "lobby__spotlights")(
-            events.map(bits.spotlight),
-            !ctx.isBot option frag(
-              lila.tournament.Spotlight.select(tours, ctx.me, 3 - events.size) map {
-                views.html.tournament.homepageSpotlight(_)
-              },
-              swiss map views.html.swiss.bits.homepageSpotlight,
-              simuls.filter(isFeaturable) map views.html.simul.bits.homepageSpotlight
-            )
-          ),
-          if (ctx.isAuth)
+        div()(
+        if (ctx.isAuth)
             div(cls := "timeline")(
               ctx.blind option h2("Timeline"),
               views.html.timeline entries userTimeline,
@@ -140,15 +150,13 @@ object home {
             div(cls := "about-side")(
               ctx.blind option h2("About"),
               trans.xIsAFreeYLibreOpenSourceChessServer(
-                "ChessUqam",
+                "ChessUQAM",
                 a(cls := "blue", href := routes.Plan.features)(trans.really.txt())
               ),
               " ",
-              a(href := "/about")(trans.aboutX("ChessUqam"), "...")
-            ),
-          
-          
-        ),
+              a(href := "/about")(trans.aboutX("ChessUQAM"), "...")
+            ))
+            ,
         currentGame.map(bits.currentGameInfo) orElse
           hasUnreadLichessMessage.option(bits.showUnreadLichessMessage) orElse
           playban.map(bits.playbanInfo) getOrElse {
@@ -203,20 +211,21 @@ object home {
         ),*/
         div(cls := "lobby__about")(
           ctx.blind option h2("About"),
-          a(href := "/about")(trans.aboutX("ChessUqam")),
+          a(href := "/about")(trans.aboutX("ChessUQAM")),
           a(href := "/faq")(trans.faq.faqAbbreviation()),
           a(href := "/contact")(trans.contact.contact()),
           a(href := "/mobile")(trans.mobileApp()),
           a(href := routes.Page.tos)(trans.termsOfService()),
           a(href := "/privacy")(trans.privacy()),
-          a(href := "/source")(trans.sourceCode()),
-          a(href := "/ads")("Ads"),
-          views.html.base.bits.connectLinks
+          // Removed By Jean-Simon Dagenais
+          //a(href := "/source")(trans.sourceCode()),
+          //a(href := "/ads")("Ads"),
+          //views.html.base.bits.connectLinks
         )
         
       )
-     }
-     else{
+     //}
+     /*else{
        main(
         cls := List(
           "lobby"            -> true,
@@ -244,7 +253,7 @@ object home {
             ),
 
       )
-     }
+     }*/
     }
 
   

@@ -410,14 +410,14 @@ object layout {
             if (ctx.kid) span(title := trans.kidMode.txt(), cls := "kiddo")(":)")
             else ctx.isBot option botImage,
             a(href := "/")(
-              "ChessUqam",
+              "ChessUQAM",
               // span(if (netConfig.isProd) ".org" else ".dev")
             )
           ),
           ctx.blind option h2("Navigation"),
-          if(ctx.isAuth){
+          //if(ctx.isAuth){
           !ctx.isAppealUser option topnav()
-          }
+          //}
         ),
         div(cls := "site-buttons")(
           !ctx.isAppealUser option clinput,
