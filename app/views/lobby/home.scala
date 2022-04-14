@@ -103,6 +103,12 @@ object home {
             div(cls := "lobby__table")(
             ctx.blind option h2("Play"),
             a(
+              href := "",
+              cls := List(
+                "button button-empty" -> true,
+              ),
+            ),
+            a(
               href := "/login",
               cls := List(
                 "button" -> true,
@@ -110,6 +116,13 @@ object home {
               trans.signIn()
             ),
 
+            a(
+              href := "",
+              cls := List(
+                "button button-empty" -> true,
+              ),
+            ),
+            
             a(
               href := "/signup",
               cls := List(
