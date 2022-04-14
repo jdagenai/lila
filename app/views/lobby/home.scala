@@ -65,10 +65,10 @@ object home {
             div(cls := "bg-switch__track"),
             div(cls := "bg-switch__thumb")
           ),
-          div(cls := "lobby__start")(
+          if(ctx.isAuth) div(cls := "lobby__start")(
             
             ctx.blind option h2("Play"),
-            if(ctx.isAuth) a(
+           a(
               href := routes.Setup.hookForm
               ,
               cls := List(
@@ -77,14 +77,7 @@ object home {
               ),
               trans.createAGame()
             ),
-            if(ctx.isAnon) a(
-              href := "/login",
-              cls := List(
-                "button" -> true,
-              ),
-              trans.signIn()
-            ),
-            if(ctx.isAuth)a(
+            a(
               href := routes.Setup.friendForm(none)
               ,
               cls := List(
@@ -93,14 +86,7 @@ object home {
               ),
               trans.playWithAFriend()
             ),
-            if(ctx.isAnon) a(
-              href := "/signup",
-              cls := List(
-                "button button-red" -> true,
-              ),
-              trans.signUp()
-            ),
-            if(ctx.isAuth)a(
+            a(
               href := routes.Setup.aiForm
               , 
               cls := List(
@@ -111,6 +97,27 @@ object home {
             ),
 
             
+          
+          ),
+          if(ctx.isAnon) div(cls := "")(
+            div(cls := "lobby__table")(
+            ctx.blind option h2("Play"),
+            a(
+              href := "/login",
+              cls := List(
+                "button" -> true,
+              ),
+              trans.signIn()
+            ),
+
+            a(
+              href := "/signup",
+              cls := List(
+                "button button-red" -> true,
+              ),
+              trans.signUp()
+            ), 
+            )        
           
           ),
 
