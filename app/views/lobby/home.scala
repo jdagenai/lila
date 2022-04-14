@@ -116,21 +116,9 @@ object home {
 
           
 
-          div(cls := "lobby__spotlights")(
-            events.map(bits.spotlight),
-            !ctx.isBot option frag(
-              lila.tournament.Spotlight.select(tours, ctx.me, 3 - events.size) map {
-                views.html.tournament.homepageSpotlight(_)
-              },
-              swiss map views.html.swiss.bits.homepageSpotlight,
-              simuls.filter(isFeaturable) map views.html.simul.bits.homepageSpotlight
-            )
-          ),
           
           
-          
-        ),
-        div(cls := "lobby__counters")(
+          div(cls := "lobby__counters")(
             ctx.blind option h2("Counters"),
             a(
               id := "nb_connected_players",
@@ -149,6 +137,19 @@ object home {
               )
             )
           ),
+          
+        ),
+        div(cls := "lobby__spotlights")(
+            events.map(bits.spotlight),
+            !ctx.isBot option frag(
+              lila.tournament.Spotlight.select(tours, ctx.me, 3 - events.size) map {
+                views.html.tournament.homepageSpotlight(_)
+              },
+              swiss map views.html.swiss.bits.homepageSpotlight,
+              simuls.filter(isFeaturable) map views.html.simul.bits.homepageSpotlight
+            )
+          ),
+        
         div()(
         if (ctx.isAuth)
             div(cls := "timeline")(
