@@ -47,11 +47,22 @@ object login {
             form3.submit(trans.signIn(), icon = none)
           )
         ),
+
+        a(
+              href := "/signup",
+              cls := List(
+                "button button-red button-empty" -> true,
+              ),
+              trans.signUp()
+            ),
+
         div(cls := "alternative")(
-          a(href := routes.Auth.signup)(trans.signUp()),
+          //a(href := routes.Auth.signup)(trans.signUp()),
           a(href := routes.Auth.passwordReset)(trans.passwordReset()),
           a(href := routes.Auth.magicLink)("Log in by email")
-        )
+        ),
+
+        
       )
     }
 }
