@@ -68,9 +68,7 @@ object home {
           div(cls := "lobby__start")(
             
             ctx.blind option h2("Play"),
-            //ctx.isAnon option h2("Please sign in before playing"),
-            ctx.isAnon option h2(trans.pleaseSignIn()),
-            a(
+            if(ctx.isAuth) a(
               href := routes.Setup.hookForm
               ,
               cls := List(
@@ -79,7 +77,14 @@ object home {
               ),
               trans.createAGame()
             ),
-            a(
+            if(ctx.isAnon) a(
+              href := "/login",
+              cls := List(
+                "button" -> true,
+              ),
+              trans.signIn()
+            ),
+            if(ctx.isAuth)a(
               href := routes.Setup.friendForm(none)
               ,
               cls := List(
@@ -88,7 +93,14 @@ object home {
               ),
               trans.playWithAFriend()
             ),
-            a(
+            if(ctx.isAnon) a(
+              href := "/signup",
+              cls := List(
+                "button button-red" -> true,
+              ),
+              trans.signUp()
+            ),
+            if(ctx.isAuth)a(
               href := routes.Setup.aiForm
               , 
               cls := List(
