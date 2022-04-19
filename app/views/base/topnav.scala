@@ -57,7 +57,7 @@ object topnav {
         )
       ),
       st.section(
-        linkTitle(if(ctx.isAuth) routes.Practice.index.path else routes.Auth.login.path, trans.learnMenu()),
+        linkTitle(if(ctx.isAuth) routes.Learn.index.path else routes.Auth.login.path, trans.learnMenu()),
         div(role := "group")(
           ctx.noBot option frag(
             if(ctx.isAuth) a(href := routes.Learn.index)(trans.chessBasics())
