@@ -25,7 +25,7 @@ final class AutomaticEmail(
 
   val regards = """Regards,
 
-The Lichess team"""
+The ChessUQAM team"""
 
   def welcomeEmail(user: User, email: EmailAddress)(implicit lang: Lang): Funit = {
     lila.mon.email.send.welcome.increment()
@@ -56,7 +56,7 @@ The Lichess team"""
       body = alsoSendAsPrivateMessage(user) { implicit lang =>
         s"""Hello,
 
-Thank you for confirming your $title title on Lichess.
+Thank you for confirming your $title title on ChessUQAM.
 It is now visible on your profile page: $baseUrl/@/${user.username}.
 
 $regards
@@ -66,7 +66,7 @@ $regards
         implicit val lang = userLang(user)
         mailer send Mailer.Message(
           to = email,
-          subject = s"$title title confirmed on lichess.org",
+          subject = s"$title title confirmed on ChessUQAM",
           text = Mailer.txt.addServiceNote(body),
           htmlBody = standardEmail(body).some
         )
@@ -78,10 +78,10 @@ $regards
 
   def onBecomeCoach(user: User): Funit =
     sendAsPrivateMessageAndEmail(user)(
-      subject = _ => "Coach profile unlocked on lichess.org",
+      subject = _ => "Coach profile unlocked on ChessUQAM",
       body = _ => s"""Hello,
 
-It is our pleasure to welcome you as a Lichess coach.
+It is our pleasure to welcome you as a ChessUQAM coach.
 Your coach profile awaits you on $baseUrl/coach/edit.
 
 $regards
@@ -107,7 +107,7 @@ $regards
 
   def onAppealReply(user: User): Funit =
     sendAsPrivateMessageAndEmail(user)(
-      subject = _ => "Appeal response on lichess.org",
+      subject = _ => "Appeal response on ChessUQAM",
       body = _ => s"""Hello,
 
 Your appeal has received a response from the moderation team, to see it click here: $baseUrl/appeal
@@ -120,7 +120,7 @@ $regards
     val body =
       s"""Hello,
 
-Following your request, the Lichess account "${user.username}" will be fully erased in 24h from now.
+Following your request, the ChessUQAM account "${user.username}" will be fully erased in 24h from now.
 
 $regards
 """
@@ -129,7 +129,7 @@ $regards
         implicit val lang = userLang(user)
         mailer send Mailer.Message(
           to = email,
-          subject = "lichess.org account erasure",
+          subject = "ChessUQAM account erasure",
           text = Mailer.txt.addServiceNote(body),
           htmlBody = standardEmail(body).some
         )
@@ -141,10 +141,10 @@ $regards
     userRepo named userId map {
       _ foreach { user =>
         alsoSendAsPrivateMessage(user)(
-          body = _ => s"""Thank you for supporting Lichess!
+          body = _ => s"""Thank you for supporting ChessUQAM!
 
-Thank you for your donation to Lichess - your patronage directly goes to keeping the site running and new features coming.
-Lichess is entirely funded by user's donations like yours, and we truly appreciate the help we're getting.
+Thank you for your donation to ChessUQAM - your patronage directly goes to keeping the site running and new features coming.
+ChessUQAM is entirely funded by user's donations like yours, and we truly appreciate the help we're getting.
 As a small token of our thanks, your account now has the awesome Patron wings!"""
         )
       }
@@ -154,7 +154,7 @@ As a small token of our thanks, your account now has the awesome Patron wings!""
     userRepo named userId map {
       _ foreach { user =>
         alsoSendAsPrivateMessage(user)(
-          body = _ => s"""End of Lichess Patron subscription
+          body = _ => s"""End of ChessUQAM Patron subscription
 
 Thank you for your support over the last month.
 We appreciate all donations, being a small team relying entirely on generous donors like you!
@@ -189,7 +189,7 @@ To make a new donation, head to $baseUrl/patron"""
           userWithEmail.emails.current.filterNot(_.isNoReply) ?? { email =>
             implicit val lang = userLang(userWithEmail.user)
             val hello =
-              "Hello and thank you for playing correspondence chess on Lichess!"
+              "Hello and thank you for playing correspondence chess on ChessUQAM!"
             val disableSettingNotice =
               "You are receiving this email because you have correspondence email notification turned on. You can turn it off in your settings:"
             val disableLink = s"$baseUrl/account/preferences/game-behavior#correspondence-email-notif"
