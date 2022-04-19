@@ -29,54 +29,7 @@ object faq {
     ) {
       div(cls := "faq small-page box box-pad")(
         h1(cls := "lichess_title")(frequentlyAskedQuestions()),
-        h2("Lichess"),
-        question(
-          "name",
-          whyIsLichessCalledLichess.txt(),
-          p(
-            lichessCombinationLiveLightLibrePronounced(em(leechess())),
-            " ",
-            a(href := "https://www.youtube.com/watch?v=KRpPqcrdE-o")(hearItPronouncedBySpecialist())
-          ),
-          p(
-            whyLiveLightLibre()
-          ),
-          p(
-            whyIsLilaCalledLila(
-              a(href := "https://github.com/lichess-org/lila")("lila"),
-              a(href := "https://www.scala-lang.org/")("Scala")
-            )
-          )
-        ),
-        question(
-          "contributing",
-          howCanIContributeToLichess.txt(),
-          p(lichessPoweredByDonationsAndVolunteers()),
-          p(
-            findMoreAndSeeHowHelp(
-              a(href := routes.Plan.index)(beingAPatron()),
-              a(href := routes.Main.costs)(breakdownOfOurCosts()),
-              a(href := routes.Page.help)(otherWaysToHelp())
-            )
-          )
-        ),
-        question(
-          "sites_based_on_Lichess",
-          areThereWebsitesBasedOnLichess.txt(),
-          p(
-            yesLichessInspiredOtherOpenSourceWebsites(
-              a(href := "/source")(trans.sourceCode()),
-              a(href := "/api")("API"),
-              a(href := "https://database.lichess.org")(trans.database())
-            )
-          ),
-          ul(
-            li(a(href := "https://blitztactics.com/about")("Blitz Tactics")),
-            li(a(href := "https://tailuge.github.io/chess-o-tron/html/blunder-bomb.html")("Blunder Bomb")),
-            li(a(href := "https://lidraughts.org")("lidraughts.org")),
-            li(a(href := "https://lishogi.org")("lishogi.org"))
-          )
-        ),
+
         h2(fairPlay()),
         question(
           "rating-refund",
@@ -208,7 +161,7 @@ object faq {
           p(
             showYourTitle(
               a(href := routes.Main.verifyTitle)(verificationForm()),
-              a(href := "#lm")("Lichess master (LM)")
+              a(href := "#lm")("ChessUQAM master (LM)")
             )
           )
         ),

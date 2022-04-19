@@ -48,7 +48,7 @@ object index {
 
   def byYear(year: Int, posts: List[MiniPost])(implicit ctx: Context) =
     views.html.base.layout(
-      title = s"Lichess blog posts from $year",
+      title = s"ChessUQAM blog posts from $year",
       moreCss = cssTag("blog"),
       csp = bits.csp
     )(

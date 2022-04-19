@@ -46,16 +46,6 @@ export function view(ctrl: LangsCtrl): VNode {
       },
       ctrl.list().map(langView(ctrl.current, ctrl.accepted))
     ),
-    h(
-      'a.help.text',
-      {
-        attrs: {
-          href: 'https://crowdin.com/project/lichess',
-          'data-icon': '',
-        },
-      },
-      'Help translate Lichess'
-    ),
   ]);
 }
 

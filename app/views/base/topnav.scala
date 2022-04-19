@@ -42,7 +42,7 @@ object topnav {
         )
       ),
       ctx.noBot option st.section(
-        linkTitle(routes.Puzzle.home.path, trans.puzzles()),
+        linkTitle(if(ctx.isAuth) routes.Puzzle.home.path else routes.Auth.login.path, trans.puzzles()),
         div(role := "group")(
           if(ctx.isAuth) a(href := routes.Puzzle.home)(trans.puzzles())
           else a(href := "/login")(trans.puzzles()),
@@ -57,7 +57,7 @@ object topnav {
         )
       ),
       st.section(
-        linkTitle(routes.Practice.index.path, trans.learnMenu()),
+        linkTitle(if(ctx.isAuth) routes.Learn.index.path else routes.Auth.login.path, trans.learnMenu()),
         div(role := "group")(
           ctx.noBot option frag(
             if(ctx.isAuth) a(href := routes.Learn.index)(trans.chessBasics())
@@ -72,7 +72,7 @@ object topnav {
         )
       ),
       st.section(
-        linkTitle(routes.Tv.index.path, trans.watch()),
+        linkTitle(if(ctx.isAuth) routes.Tv.index.path else routes.Auth.login.path, trans.watch()),
         div(role := "group")(
           // Removed By Jean-Simon Dagenais
           //a(href := routes.Tv.index)("Lichess TV"),
@@ -85,7 +85,7 @@ object topnav {
         )
       ),
       st.section(
-        linkTitle(routes.User.list.path, trans.community()),
+        linkTitle(if(ctx.isAuth) routes.User.list.path else routes.Auth.login.path, trans.community()),
         div(role := "group")(
           if(ctx.isAuth) a(href := routes.User.list)(trans.players())
           else a(href := "/login")(trans.players()),
@@ -98,7 +98,7 @@ object topnav {
         )
       ),
       st.section(
-        linkTitle(routes.UserAnalysis.index.path, trans.tools()),
+        linkTitle(if(ctx.isAuth) routes.UserAnalysis.index.path else routes.Auth.login.path, trans.tools()),
         div(role := "group")(
           if(ctx.isAuth) a(href := routes.UserAnalysis.index)(trans.analysis())
           else a(href := "/login")(trans.analysis()),

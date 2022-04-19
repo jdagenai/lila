@@ -1,4 +1,4 @@
-import { h } from 'snabbdom';
+import { h, VNode } from 'snabbdom';
 import LobbyController from '../../ctrl';
 import { bind } from 'common/snabbdom';
 import { tds, perfNames } from '../util';
@@ -66,6 +66,27 @@ export function toggle(ctrl: LobbyController) {
     attrs: { title: ctrl.trans.noarg('graph'), 'data-icon': '' },
     hook: bind('mousedown', _ => ctrl.setMode('chart'), ctrl.redraw),
   });
+}
+
+function createSeek(ctrl: LobbyController): VNode | undefined {
+  if (ctrl.data.me && ctrl.data.seeks.length < 8)
+    return h('div.create', [
+      h(
+        'a.button',
+        {
+          hook: bind('click', () => {
+            $('.lobby__start .config_hook')
+              .each(function (this: HTMLElement) {
+                this.dataset.hrefAddon = '?time=correspondence';
+              })
+              .trigger('mousedown')
+              .trigger('click');
+          }),
+        },
+        ctrl.trans('createAGame')
+      ),
+    ]);
+  return;
 }
 
 export function render(ctrl: LobbyController, allHooks: Hook[]) {
@@ -151,5 +172,6 @@ export function render(ctrl: LobbyController, allHooks: Hook[]) {
       },
       renderedHooks
     ),
+    createSeek(ctrl),
   ]);
 }
