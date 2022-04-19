@@ -159,7 +159,7 @@ object home {
           ),
           
         ),
-        div(cls := "lobby__spotlights")(
+        if(ctx.isAuth) div(cls := "lobby__spotlights")(
             events.map(bits.spotlight),
             !ctx.isBot option frag(
               lila.tournament.Spotlight.select(tours, ctx.me, 3 - events.size) map {
@@ -197,7 +197,8 @@ object home {
             if (ctx.blind) blindLobby(blindGames)
             else bits.lobbyApp
           },
-        div(cls := "lobby__side")(
+          
+        if(ctx.isAuth) div(cls := "lobby__side")(
           ctx.blind option h2("Highlights"),
           ctx.noKid option st.section(cls := "lobby__streams")(
             views.html.streamer.bits liveStreams streams,
@@ -208,16 +209,17 @@ object home {
           ),
           
         ),
-        featured map { g =>
+          
+        if(ctx.isAuth) featured map { g =>
           div(cls := "lobby__tv")(
             views.html.game.mini(Pov naturalOrientation g, tv = true)
           )
         },
-        puzzle map { p =>
+        if(ctx.isAuth) puzzle map { p =>
           views.html.puzzle.embed.dailyLink(p)(ctx.lang)(cls := "lobby__puzzle")
         },
-        ctx.noBot option bits.underboards(tours, simuls, leaderboard, tournamentWinners),
-        ctx.noKid option div(cls := "lobby__forum lobby__box")(
+        if(ctx.isAuth) ctx.noBot option bits.underboards(tours, simuls, leaderboard, tournamentWinners),
+        if(ctx.isAuth) ctx.noKid option div(cls := "lobby__forum lobby__box")(
           a(cls := "lobby__box__top", href := routes.ForumCateg.index)(
             h2(cls := "title text", dataIcon := "")(trans.latestForumPosts()),
             span(cls := "more")(trans.more(), " »")
