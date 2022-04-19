@@ -22,10 +22,6 @@ object bits {
       a(cls := active.has("liked").option("active"), href := routes.Ublog.liked())("Liked blog posts"),
       ctx.me map { me =>
         a(cls := active.has("mine").option("active"), href := routes.Ublog.index(me.username))("My blog")
-      },
-      a(cls := active.has("lichess").option("active"), href := routes.Blog.index())("Lichess blog"),
-      year.isDefined || active.has("lichess") option lila.blog.allYears.map { y =>
-        a(cls := (year has y).option("active"), href := routes.Blog.year(y))(y)
       }
     )
 
