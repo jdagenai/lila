@@ -181,15 +181,15 @@ object home {
               ),
             )
           else
-            div(cls := "about-side")(
+            div(cls := "about-side")(/*
               ctx.blind option h2("About"),
               trans.xIsAFreeYLibreOpenSourceChessServer(
                 "ChessUQAM",
-                a(cls := "blue", href := routes.Plan.features)(trans.really.txt())
+                a(cls := "disable", href := "")(trans.really.txt())
               ),
               " ",
               //a(href := "/about")(trans.aboutX("ChessUQAM"), "...")
-            ))
+            */))
             ,
         currentGame.map(bits.currentGameInfo) orElse
           hasUnreadLichessMessage.option(bits.showUnreadLichessMessage) orElse
