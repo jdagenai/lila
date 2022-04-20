@@ -212,7 +212,7 @@ object home {
           
         if(ctx.isAuth) featured map { g =>
           div(cls := "lobby__tv")(
-            views.html.game.mini(Pov naturalOrientation g, tv = true)
+            views.html.game.mini(Pov naturalOrientation g, tv = false)
           )
         },
         if(ctx.isAuth) puzzle map { p =>
