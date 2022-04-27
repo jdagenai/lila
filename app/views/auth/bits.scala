@@ -113,7 +113,7 @@ object bits {
       
       register option form3.passwordComplexityMeter(trans.newPasswordStrength()),
       emailOption.map { email =>
-        form3.group(email, trans.email(), help = frag("We will only use it for password reset.").some)(
+        form3.group(email, trans.email(), help = frag("We will only use it for password reset, if the email is not valid, password reset will not be possible.").some)(
           form3.input(_, typ = "email")(required)
         )
       },
@@ -211,6 +211,7 @@ object bits {
           "Log in by email"
         ),
         p("We will send you an email containing a link to log you in."),
+        p("If the email adress is not valid, no email will be sent."),
         postForm(cls := "form3", action := routes.Auth.magicLinkApply)(
           form3.group(form("email"), trans.email())(
             form3.input(_, typ = "email")(autofocus, required, autocomplete := "email")
