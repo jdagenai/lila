@@ -77,7 +77,7 @@ function createSeek(ctrl: LobbyController): VNode | undefined {
           hook: bind('click', () => {
             $('.lobby__start .config_hook')
               .each(function (this: HTMLElement) {
-                this.dataset.hrefAddon = '?time=correspondence';
+                this.dataset.hrefAddon = '?time=realtime';
               })
               .trigger('mousedown')
               .trigger('click');
