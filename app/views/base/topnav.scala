@@ -72,7 +72,7 @@ object topnav {
         )
       ),
       st.section(
-        linkTitle(if(ctx.isAuth) routes.Tv.index.path else routes.Auth.login.path, trans.watch()),
+        linkTitle(if(ctx.isAuth) routes.Tv.games.path else routes.Auth.login.path, trans.watch()),
         div(role := "group")(
           // Removed By Jean-Simon Dagenais
           //a(href := routes.Tv.index)("Lichess TV"),
