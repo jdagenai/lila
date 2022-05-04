@@ -10,9 +10,15 @@ import lila.app.ui.ScalatagsTemplate._
 import lila.common.String.html.safeJsonValue
 import lila.game.Pov
 import views.html.chat
+import lila.chat.Chat
 
 
 object home {
+
+  val globalChat = Chat.makeUser(Chat.Id("Home"))
+  //val res = Chat.Restricted(globalChat, false)
+  //val jsonChat = views.html.chat.json(globalChat, "Home", false,true,Chat.ResourceId("homeID"))
+  //val chat = lila.chat.UserChat("home", )
 
   def apply(homepage: Homepage)(implicit ctx: Context) = {
     import homepage._
@@ -34,7 +40,8 @@ object home {
                 )
               },
               "showRatings" -> ctx.pref.showRatings,
-              "i18n"        -> i18nJsObject(i18nKeys)
+              "i18n"        -> i18nJsObject(i18nKeys),
+              "chat" -> views.html.chat.json(globalChat, "Global Chat", false,true,Chat.ResourceId(s"tournament/${"AJqx2jjw"}"))
             )
           )})"""
         )
@@ -199,14 +206,10 @@ object home {
           },
           
         if(ctx.isAuth) div(cls := "lobby__side")(
-          ctx.blind option h2("Highlights"),
-          ctx.noKid option st.section(cls := "lobby__streams")(
-            views.html.streamer.bits liveStreams streams,
-            streams.live.streams.nonEmpty option a(href := routes.Streamer.index(), cls := "more")(
-              trans.streamersMenu(),
-              " »"
-            )
-          ),
+ 
+          views.html.chat.frag,
+          //a(cls := "public-chat", href := routes.Mod.publicChat)("Public Chats"),
+          
           
         ),
           

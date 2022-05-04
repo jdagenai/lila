@@ -57,6 +57,8 @@ export interface LobbyOpts {
   data: LobbyData;
   i18n: I18nDict;
   trans: Trans;
+  chat?: any;
+  $side: Cash;
 }
 
 export interface LobbyData {

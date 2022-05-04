@@ -1,6 +1,7 @@
 import { init, classModule, attributesModule } from 'snabbdom';
 import { Chessground } from 'chessground';
 import { LobbyOpts, Tab } from './interfaces';
+import LichessChat from 'chat';
 
 export const patch = init([classModule, attributesModule]);
 
@@ -37,3 +38,4 @@ export default function main(opts: LobbyOpts) {
 // that's for the rest of lichess to access chessground
 // without having to include it a second time
 window.Chessground = Chessground;
+window.LichessChat = LichessChat;

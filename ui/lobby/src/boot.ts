@@ -26,6 +26,7 @@ export default function LichessLobby(opts: LobbyOpts) {
       const match = RegExp('[?&]' + name + '=([^&]*)').exec(location.search);
       return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
     };
+  //lichess.makeChat(opts.chat);
   lichess.socket = new lichess.StrongSocket('/lobby/socket/v5', false, {
     receive(t: string, d: any) {
       lobby.socketReceive(t, d);
