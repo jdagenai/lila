@@ -7,6 +7,7 @@ export const patch = init([classModule, attributesModule]);
 // eslint-disable-next-line no-duplicate-imports
 import makeCtrl from './ctrl';
 import view from './view/main';
+import LichessChat from 'chat';
 
 export default function main(opts: LobbyOpts) {
   const ctrl = new makeCtrl(opts, redraw);
@@ -37,3 +38,4 @@ export default function main(opts: LobbyOpts) {
 // that's for the rest of lichess to access chessground
 // without having to include it a second time
 window.Chessground = Chessground;
+window.LichessChat = LichessChat;

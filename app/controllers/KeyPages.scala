@@ -25,7 +25,11 @@ final class KeyPages(env: Env)(implicit ec: scala.concurrent.ExecutionContext) {
         swiss = env.swiss.feature.onHomepage.getUnit.getIfPresent,
         events = env.event.api.promoteTo(ctx.req).recoverDefault,
         simuls = env.simul.allCreatedFeaturable.get {}.recoverDefault,
-        streamerSpots = env.streamer.homepageMaxSetting.get()
+        streamerSpots = env.streamer.homepageMaxSetting.get(),
+        chatOption = ctx.noKid ?? env.chat.api.userChat.cached
+                    .findMine(lila.chat.Chat.Id("lobbyhome"), ctx.me)
+                    .map(some),
+        chatVersion = ctx.noKid ?? env.lobby.version("lobbyhome").dmap(some)
       )
       .mon(_.lobby segment "preloader.total")
       .map { h =>

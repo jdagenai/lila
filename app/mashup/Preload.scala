@@ -45,7 +45,9 @@ final class Preload(
       swiss: Option[Swiss],
       events: Fu[List[Event]],
       simuls: Fu[List[Simul]],
-      streamerSpots: Int
+      streamerSpots: Int,
+      chatOption: Fu[Option[lila.chat.UserChat.Mine]],
+      chatVersion: Fu[Option[lila.socket.Socket.SocketVersion]]
   )(implicit ctx: Context): Fu[Homepage] =
     lobbyApi(ctx).mon(_.lobby segment "lobbyApi") zip
       posts.mon(_.lobby segment "posts") zip
@@ -66,9 +68,10 @@ final class Preload(
       ctx.userId
         .ifTrue(ctx.nbNotifications > 0)
         .filterNot(liveStreamApi.isStreaming)
-        .??(msgApi.hasUnreadLichessMessage) flatMap {
+        .??(msgApi.hasUnreadLichessMessage) zip
+         chatOption zip chatVersion flatMap {
         // format: off
-        case (((((((((((((((data, povs), posts), tours), events), simuls), feat), entries), lead), tWinners), puzzle), streams), playban), blindGames), ublogPosts), lichessMsg) =>
+        case (((((((((((((((((data, povs), posts), tours), events), simuls), feat), entries), lead), tWinners), puzzle), streams), playban), blindGames), ublogPosts), lichessMsg), chatOption), chatVersion) =>
         // format: on
         (ctx.me ?? currentGameMyTurn(povs, lightUserApi.sync))
           .mon(_.lobby segment "currentGame") zip
@@ -97,7 +100,9 @@ final class Preload(
               lobbySocket.counters,
               lastPostCache.apply,
               ublogPosts,
-              hasUnreadLichessMessage = lichessMsg
+              hasUnreadLichessMessage = lichessMsg,
+              chatOption,
+              chatVersion
             )
           }
       }
@@ -143,7 +148,9 @@ object Preload {
       counters: lila.lobby.LobbyCounters,
       lastPost: Option[lila.blog.MiniPost],
       ublogPosts: List[UblogPost.PreviewPost],
-      hasUnreadLichessMessage: Boolean
+      hasUnreadLichessMessage: Boolean,
+      chatOption: Option[lila.chat.UserChat.Mine],
+      chatVersion: Option[lila.socket.Socket.SocketVersion]
   )
 
   case class CurrentGame(pov: Pov, opponent: String)

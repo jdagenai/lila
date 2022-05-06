@@ -35,6 +35,38 @@ body {
 .lobby__side {
   @extend %flex-column;
 
+  .lobby__chat {
+    .mchat {
+     
+      flex: 1 1 0;
+      margin-top: 30px;
+      height: 570px;
+      margin-bottom: $block-gap;
+
+      @if $theme-dark {
+        box-shadow: none;
+  
+        &__tabs,
+        &__content,
+        &__say,
+        &__tab-active {
+          background: $c-bg-page !important;
+        }
+      }
+
+      @include breakpoint($mq-col3) {
+        height: 370px;
+        margin-bottom: 0px;
+      }
+
+      .mchat__messages{
+        overflow: scroll;
+      }
+    } 
+
+    
+  }
+
   overflow: hidden;
 }
 

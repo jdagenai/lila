@@ -15,10 +15,6 @@ scriptClasspath := Seq("*")
 maintainer := "contact@lichess.org"
 Compile / resourceDirectory := baseDirectory.value / "conf"
 
-//Ajouter dossier public dans build de prod
-import NativePackagerHelper._
-mappings in Universal ++= directory("public")
-
 // format: off
 libraryDependencies ++= akka.bundle ++ playWs.bundle ++ Seq(
   macwire.macros, macwire.util, play.json, jodaForms,
