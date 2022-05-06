@@ -20,7 +20,7 @@ $mq-not-col3: $mq-not-small;
 .lobby {
   grid-area: main;
   display: grid;
-  grid-template-areas: 'app' 'table' 'side' 'blog' 'tv' 'puzzle' 'chat' 'leader' 'winner' 'tours' 'simuls' 'forum' 'support' 'about' '.';
+  grid-template-areas: 'blog   blog' 'table  table' 'app    app' 'side   chat' 'tv   puzzle' 'winner winner' 'tours  tours' 'simuls simuls' 'forum  forum' 'about  support';
   grid-gap: $block-gap;
 
   &__counters {
@@ -30,8 +30,9 @@ $mq-not-col3: $mq-not-small;
   @include breakpoint($mq-col2) {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto repeat(3, fit-content(0));
-    grid-template-areas: 'side    blog    blog    table' 'side   app     app    chat' 'tv     winner  winner puzzle' '.     tours   tours  .' '.      simuls  simuls .' 'about    forum    forum    support';
- }
+
+    grid-template-areas: 'side    blog    blog' 'chat   app     app' 'table    app     app' 'tv      winner  winner' 'puzzle  tours   tours' 'support   simuls  simuls' 'about forum forum ';
+  }
 
   @include breakpoint($mq-col3) {
     grid-template-columns: repeat(3, 1fr);
@@ -121,9 +122,6 @@ $mq-not-col3: $mq-not-small;
     grid-area: forum;
   }
 
-  &--no-simuls &__forum {
-    grid-area: simuls;
-  }
 
   &__blog {
     grid-area: blog;

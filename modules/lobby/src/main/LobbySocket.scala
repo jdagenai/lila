@@ -325,7 +325,7 @@ private object LobbySocket {
       
       val reader: P.In.Reader = raw => lobbyReader(raw) orElse RP.In.reader(raw)
       val lobbyReader: P.In.Reader = raw =>
-        raw.path.pp("path") match {
+        raw.path match {
           case "counters" =>
             import cats.implicits._
             raw.get(2) { case Array(m, r) =>
