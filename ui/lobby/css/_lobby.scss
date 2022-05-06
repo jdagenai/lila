@@ -35,6 +35,14 @@ body {
 .lobby__side {
   @extend %flex-column;
 
+  .lobby__chat {
+    .mchat {
+     
+      flex: 1 1 0;
+      margin-top: $block-gap;
+    } 
+  }
+
   overflow: hidden;
 }
 
